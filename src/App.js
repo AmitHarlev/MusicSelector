@@ -4,76 +4,105 @@ import './App.css';
 import fire from './fire';
 
 class App extends Component {
-  render() {
-    return (
-      <div>
-        <MainPanel/>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div>
+				<MainPanel />
+			</div>
+		);
+	}
 }
 
 class MainPanel extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      items: ["Call Me Maybe"],
-      textBoxValue: ""
-    }
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			items: ["Call Me Maybe"],
+		}
+	}
 
-  handleChange = (e) => {
-    this.setState({textBoxValue: e.target.value});
-  }
+	SongList = () => {
+		return this.state.items.map((item, index) => (
+			<li key={index}><span>{item} <UpVote /></span></li>
+		));
+	}
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-      this.setState({
-        items: this.state.items.concat(this.state.textBoxValue),
-        textBoxValue: ""
-      });
-  }
-
-  SongList = () => {
-    return this.state.items.map((item, index) => (
-        <li key={index}><span>{item} <UpDoot/></span></li>
-    ));
-  }
+	addSong = (songName) => {
+		this.setState({
+			items: this.state.items.concat(songName)
+		})
+	}
 
 
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.textBoxValue} onChange={this.handleChange}></input>
-        </form>
-        <this.SongList/>
-      </div>
-    )}
+	render() {
+		return (
+			<div>
+				<AddForm add={this.addSong} />
+				<this.SongList />
+			</div>
+		)
+	}
 }
 
-class UpDoot extends React.Component{
+class AddForm extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			textBoxValue: ""
+		}
+	}
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      vote: 0
-    };
+	handleChange = (e) => {
+		this.setState({ textBoxValue: e.target.value });
+	}
 
-  }
+	handleSubmit = (e) => {
+		e.preventDefault()
+		this.props.add(this.state.textBoxValue)
+		this.setState({
+			textBoxValue: ""
+		});
+	}
 
-  incrementVote = () => {
-    this.setState({
-      vote: this.state.vote + 1
-    });
-  }
+	render() {
+		return (<form onSubmit={this.handleSubmit}>
+			<input type="text" value={this.state.textBoxValue} onChange={this.handleChange}></input>
+			<input type="submit" />
+		</form>)
+	}
+}
 
-  render() {
-    return (<div>
-      <button onClick={this.incrementVote}>Click Me</button>
-      <span>{this.state.vote}</span>
-    </div>);
-  }
+class UpVote extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			vote: 0,
+			alreadyVoted: false
+		};
+
+	}
+
+	vote = () => {
+		if (this.state.alreadyVoted) {
+			this.setState({
+				vote: this.state.vote - 1,
+				alreadyVoted: false
+			})
+		} else {
+			this.setState({
+				vote: this.state.vote + 1,
+				alreadyVoted: true
+			});
+		}
+	}
+
+	render() {
+		return (<div>
+			<button onClick={this.vote}>{(this.state.alreadyVoted) ? "Remove Upvote" : "Upvote"}</button>
+			<span>{this.state.vote}</span>
+		</div>);
+	}
 }
 
 export default App;
