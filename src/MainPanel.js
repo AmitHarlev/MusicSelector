@@ -9,11 +9,13 @@ class MainPanel extends Component {
 			items: [],
 			textBoxValue: ""
 		}
+		
 		fire.database().ref('songs').on('value', (snapshot) => {
+			console.log(snapshot.val());
 			const items = Object.keys(snapshot.val()).map(val => snapshot.val()[val])
-			console.log(items);
+			console.log(Object.keys(snapshot.val()));
 			this.setState({
-				items: items
+				items: snapshot.val()
 			});
 		});
 	}
@@ -34,8 +36,8 @@ class MainPanel extends Component {
 	}
 
 	SongList = () => {
-		return this.state.items.map((item, index) => (
-			<span><li key={item.name}>{item.name} <UpDoot name={item} /></li></span>
+		return Object.keys(this.state.items).map((itemKey, index) => (
+			<span><li key={this.state.items[itemKey].name}>{this.state.items[itemKey].name} <UpDoot name={this.state.items[itemKey]} id="1" /></li></span>
 		));
 	}
 
