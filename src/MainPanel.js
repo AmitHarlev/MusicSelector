@@ -22,17 +22,9 @@ class MainPanel extends Component {
 
 	SongList = () => {
 		return Object.keys(this.state.items).map((itemKey, index) => (
-			<span><li key={this.state.items[itemKey].name}>{this.state.items[itemKey].name} <UpDoot name={this.state.items[itemKey]} id="1" /></li></span>
+			<span><li key={itemKey}>{this.state.items[itemKey].name} <UpDoot value ={this.state.items[itemKey].value} id={itemKey} /></li></span>
 		));
 	}
-
-	swapArrayElements = (array, a, b) => {
-		const temp = array[a];
-		array[a] = array[b]
-		array[b] = temp
-		return array;
-	}
-
 
 	render() {
 		return (
