@@ -23,7 +23,7 @@ class MainPanel extends Component {
 			items: [],
 			textBoxValue: ""
 		}
-		fire.database().ref('songs').once('value').then((snapshot) => {
+		fire.database().ref('songs').on('value', (snapshot) => {
 			const items = Object.keys(snapshot.val()).map(val => snapshot.val()[val])
 			console.log(items);
 			this.setState({
@@ -37,7 +37,7 @@ class MainPanel extends Component {
 	}
 
 	handleSubmit = (e) => {
-		e.preventDefault()
+	  e.preventDefault()
 
 		database.ref('songs').push({ name: this.state.textBoxValue, value: 0 });
 
