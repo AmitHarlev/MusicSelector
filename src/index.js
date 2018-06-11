@@ -2,13 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Login from './Login'
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 ReactDOM.render(
 	(
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
+		<Router>
+			<Switch>
+				<Route path="/login" component={Login}/>
+				<Route path="/app" component={App}/>
+				<Redirect from="/" to="login" />
+			</Switch>
+		</Router>
 	), document.getElementById('root'));
 registerServiceWorker();
