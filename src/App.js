@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, ReactFragment } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import fire from './fire';
@@ -10,9 +11,11 @@ class App extends Component {
 
 	render() {
 		return (
-			<div>
-				<MainPanel database={database}/>
-			</div>
+			<Switch>
+				<Route path="/">
+					<MainPanel database={database} />
+				</Route>
+			</Switch>
 		);
 	}
 }
