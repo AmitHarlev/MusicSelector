@@ -66,6 +66,7 @@ class MainPanel extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <input type="text" value={this.state.textBoxValue} onChange={this.handleChange}></input>
+					<input type="submit"/>
         </form>
         <ul>
           <this.SongList/>
