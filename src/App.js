@@ -17,7 +17,7 @@ class MainPanel extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			items: ["Call Me Maybe"],
+			items: ["Call Me Maybe"]
 		}
 	}
 
