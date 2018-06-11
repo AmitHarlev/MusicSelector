@@ -1,13 +1,13 @@
 import fire from './fire';
 import React, { Component } from 'react';
 import UpDoot from './UpDoot';
+import SubmitSong from './SubmitSong';
 
 class MainPanel extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			items: [],
-			textBoxValue: ""
+			items: []
 		}
 		fire.database().ref('songs').on('value', (snapshot) => {
 			const items = Object.keys(snapshot.val()).map(val => snapshot.val()[val])
@@ -15,21 +15,6 @@ class MainPanel extends Component {
 			this.setState({
 				items: items
 			});
-		});
-	}
-
-	handleChange = (e) => {
-		this.setState({ textBoxValue: e.target.value });
-	}
-
-	handleSubmit = (e) => {
-	  e.preventDefault()
-
-		this.props.database.ref('songs').push({ name: this.state.textBoxValue, value: 0 });
-
-		this.setState({
-			items: this.state.items.concat({ name: this.state.textBoxValue, value: 0 }),
-			textBoxValue: ""
 		});
 	}
 
@@ -50,10 +35,7 @@ class MainPanel extends Component {
 	render() {
 		return (
 			<div>
-				<form onSubmit={this.handleSubmit}>
-					<input type="text" value={this.state.textBoxValue} onChange={this.handleChange}></input>
-					<input type="submit" />
-				</form>
+				<SubmitSong database={this.props.database} />
 				<ul>
 					<this.SongList />
 				</ul>
