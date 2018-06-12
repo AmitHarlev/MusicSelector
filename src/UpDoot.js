@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import fire from './fire'
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
 
 class UpDoot extends Component {
 
@@ -16,7 +18,9 @@ class UpDoot extends Component {
 	render() {
 		return (
 			<span>
-				<button onClick={this.handleClick}>Click Me</button>
+				<Button variant="fab" color="primary" aria-label="add" onClick={this.handleClick} disabled={this.props.login ? false : true}>
+					<AddIcon />
+				</Button>
 				---{this.props.value}
 			</span>
 		);

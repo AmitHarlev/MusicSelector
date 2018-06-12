@@ -23,13 +23,14 @@ class MainPanel extends Component {
 
 	SongList = () => {
 		return Object.keys(this.state.items).map((itemKey, index) => (
-			<span><li key={itemKey}>{this.state.items[itemKey].name} <UpDoot value={this.state.items[itemKey].value} id={itemKey} /></li></span>
+			<span><li key={itemKey}>{this.state.items[itemKey].name} <UpDoot value={this.state.items[itemKey].value} id={itemKey} login={this.props.login}/></li></span>
 		));
 	}
 
 	render() {
 		return (
 			<div>
+				<h1>{this.props.login}</h1>
 				<SubmitSong/>
 				<ul>
 					<this.SongList />
