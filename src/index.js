@@ -11,10 +11,9 @@ ReactDOM.render(
 	(
 		<Router>
 			<Switch>
-				<Route path="/login" component={Login}/>
 				<Route path="/app" component={App}/>
 				<Route path="/search" component={Search}/>
-				<Redirect from="/" to="login" />
+				<Redirect from="/" to="app" />
 			</Switch>
 		</Router>
 	), document.getElementById('root'));
