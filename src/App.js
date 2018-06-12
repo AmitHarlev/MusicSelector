@@ -12,7 +12,7 @@ class App extends Component {
 		super(props);
 
 		this.state = {
-			login:false
+			login: false
 		}
 
 		this.login = false
@@ -28,13 +28,13 @@ class App extends Component {
 				this.uid = user.uid;
 				// var providerData = user.providerData;
 				this.setState({
-					login:true
+					login: true
 				});
 				// ...
 			} else {
 				// ...
 				this.setState({
-					login:false
+					login: false
 				});
 			}
 		});
@@ -43,9 +43,8 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<MainPanel login={this.state.login} uid={this.uid}/>
-				<SignInButton />
-				<SignOutButton />
+				<MainPanel login={this.state.login} uid={this.uid} />
+				{this.state.login ? <SignOutButton /> : <SignInButton />}
 			</div>
 		);
 	}
