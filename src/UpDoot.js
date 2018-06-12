@@ -8,8 +8,10 @@ class UpDoot extends Component {
 	}
 
 	handleClick = () => {
-		fire.database().ref('songs/'+ this.props.id ).update({
-			value: this.props.value + 1
+		console.log()
+		var songRef = fire.database().ref(`songs/${this.props.id}/votes/${this.props.uid}` )
+		songRef.once("value", (snapshot) => {
+			snapshot.val() ? songRef.remove() : songRef.set(true);
 		});
 	}
 
