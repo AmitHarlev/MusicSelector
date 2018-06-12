@@ -9,8 +9,8 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 
-		firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
+		firebase.auth().onAuthStateChanged(function (user) {
+			if (user) {
 				// User is signed in.
 				// var displayName = user.displayName;
 				// var email = user.email;
@@ -20,18 +20,18 @@ class App extends Component {
 				// var uid = user.uid;
 				// var providerData = user.providerData;
 				props.history.push("/app");
-              // ...
-            } else {
+				// ...
+			} else {
 				props.history.push("/login");
-              // ...
-            }
-          });
+				// ...
+			}
+		});
 	}
 
 	render() {
-		return	(
-					<MainPanel />
-				);
+		return (
+			<MainPanel />
+		);
 	}
 }
 
