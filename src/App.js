@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import MainPanel from './MainPanel'
 import firebase from 'firebase'
+import SignInButton from './SignInButton';
+import SignOutButton from './SignOutButton';
 
 class App extends Component {
 
@@ -30,7 +32,11 @@ class App extends Component {
 
 	render() {
 		return (
-			<MainPanel />
+			<div>
+				<MainPanel />
+				<SignInButton />
+				<SignOutButton />
+			</div>
 		);
 	}
 }

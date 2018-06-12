@@ -34,7 +34,6 @@ class MainPanel extends Component {
 				<ul>
 					<this.SongList />
 				</ul>
-				<SignOutButton />
 			</div>
 		)
 	}

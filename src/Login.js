@@ -4,15 +4,13 @@ import fire from './fire';
 import Button from '@material-ui/core/Button';
 import firebase from 'firebase'
 import SignOutButton from './SignOutButton'
+import SignInButton from './SignInButton';
 
 class Login extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {};
-
-		this.provider = new firebase.auth.GoogleAuthProvider();
-		firebase.auth().useDeviceLanguage();
 
 		firebase.auth().onAuthStateChanged(function (user) {
 			if (user) {
@@ -53,25 +51,12 @@ class Login extends Component {
 
 	}
 
-	handleGoogleLogin = () => {
-		firebase.auth().signInWithRedirect(this.provider);
-	}
-
-	handleSignOut = () => {
-		firebase.auth().signOut().then(function () {
-			// Sign-out successful.
-		}).catch(function (error) {
-			// An error happened.
-		});
-	}
-
 	render() {
 		return (
 			<div>
 				<h1>Login</h1>
 				<div>
-					<Button variant="contained" color='secondary' onClick={this.handleGoogleLogin}>
-						Sign in with Google</Button>
+					<SignInButton />
 					<SignOutButton />
 				</div>
 			</div>
