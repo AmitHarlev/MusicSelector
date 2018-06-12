@@ -19,7 +19,7 @@ class App extends Component {
 				// var emailVerified = user.emailVerified;
 				// var photoURL = user.photoURL;
 				// var isAnonymous = user.isAnonymous;
-				// var uid = user.uid;
+				this.uid = user.uid;
 				// var providerData = user.providerData;
 				props.history.push("/app");
 				// ...
@@ -33,7 +33,7 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<MainPanel />
+				<MainPanel uid={this.uid}/>
 				<SignInButton />
 				<SignOutButton />
 			</div>
