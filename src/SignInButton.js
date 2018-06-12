@@ -9,6 +9,9 @@ class SignInButton extends Component {
         this.state = {};
 
         this.provider = new firebase.auth.GoogleAuthProvider();
+        this.provider.setCustomParameters({
+            'hd': 'dtechhs.org'
+          });
 		firebase.auth().useDeviceLanguage();
     }
 
