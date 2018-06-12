@@ -11,7 +11,13 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 
-		firebase.auth().onAuthStateChanged(function (user) {
+		this.state = {
+			login:false
+		}
+
+		this.login = false
+
+		firebase.auth().onAuthStateChanged(user => {
 			if (user) {
 				// User is signed in.
 				// var displayName = user.displayName;
@@ -21,11 +27,15 @@ class App extends Component {
 				// var isAnonymous = user.isAnonymous;
 				this.uid = user.uid;
 				// var providerData = user.providerData;
-				props.history.push("/app");
+				this.setState({
+					login:true
+				});
 				// ...
 			} else {
-				props.history.push("/login");
 				// ...
+				this.setState({
+					login:false
+				});
 			}
 		});
 	}
@@ -33,7 +43,7 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<MainPanel uid={this.uid}/>
+				<MainPanel login={this.state.login} uid={this.uid}/>
 				<SignInButton />
 				<SignOutButton />
 			</div>
