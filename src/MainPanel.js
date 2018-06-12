@@ -23,7 +23,7 @@ class MainPanel extends Component {
 
 	SongList = () => {
 		return Object.keys(this.state.items).map((itemKey, index) => (
-			<span><li key={itemKey}>{this.state.items[itemKey].name} <UpDoot value={this.state.items[itemKey].value} id={itemKey} login={this.props.login}/></li></span>
+			<span key={itemKey}><li>{this.state.items[itemKey].name} <UpDoot value={this.state.items[itemKey].value} id={itemKey} login={this.props.login}/></li></span>
 		));
 	}
 
