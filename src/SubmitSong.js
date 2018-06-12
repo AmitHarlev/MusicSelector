@@ -16,7 +16,7 @@ class SubmitSong extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault()
 
-		fire.database().ref('songs').push({ name: this.state.textBoxValue, value: 0 });
+		fire.database().ref('songs').push({ name: this.state.textBoxValue});
 
 		this.setState({
 			textBoxValue: ""
