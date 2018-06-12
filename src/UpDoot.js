@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import fire from './fire'
 
-class UpDoot extends React.Component {
+class UpDoot extends Component {
 
 	constructor(props) {
 		super(props);

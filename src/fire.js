@@ -8,5 +8,5 @@ var config = {
     storageBucket: "musicselector-dtech.appspot.com",
     messagingSenderId: "740276646415"
 };
-var fire = firebase.initializeApp(config);
+const fire = firebase.initializeApp(config);
 export default fire;
