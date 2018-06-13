@@ -20,10 +20,10 @@ class UpDoot extends Component {
 	render() {
 		return (
 			<span>
+				{this.props.value}--
 				<Button variant="fab" color="primary" aria-label="add" onClick={this.handleClick} disabled={this.props.login ? false : true}>
 					<AddIcon />
 				</Button>
-				---{this.props.value}
 			</span>
 		);
 	}
