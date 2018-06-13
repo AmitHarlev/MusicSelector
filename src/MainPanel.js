@@ -1,8 +1,9 @@
 import fire from './fire';
 import React, { Component } from 'react';
-import UpDoot from './UpDoot';
 import SubmitSong from './SubmitSong';
 import SignOutButton from './SignOutButton';
+import SongPost from './SongPost';
+import getSongVoteCount from './Utilities';
 
 class MainPanel extends Component {
 
@@ -15,7 +16,7 @@ class MainPanel extends Component {
 		if (this.sortedKeys.length === 0) {
 			var newSortedKeys = Object.keys(this.props.items);
 			newSortedKeys.sort((a, b) => (
-				this.getSongVoteCount(b) - this.getSongVoteCount(a)
+				getSongVoteCount(this.props.items, b) - getSongVoteCount(this.props.items, a)
 			));
 			this.sortedKeys = newSortedKeys;
 		} else {
@@ -27,12 +28,8 @@ class MainPanel extends Component {
 			}
 		}
 		return this.sortedKeys.map((itemKey, index) => (
-			<span key={itemKey}><li><UpDoot uid={this.props.uid} value={this.getSongVoteCount(itemKey)} id={itemKey} login={this.props.login} />{this.props.items[itemKey].name}</li></span>
+			<SongPost key={itemKey} uid={this.props.uid} items={this.props.items} id={itemKey} login={this.props.login}/>
 		));
-	}
-
-	getSongVoteCount = (songKey) => {
-		return (this.props.items[songKey].votes) ? Object.keys(this.props.items[songKey].votes).length : 0
 	}
 
 	render = () => {
