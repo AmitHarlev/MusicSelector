@@ -1,4 +1,3 @@
-import fire from './fire';
 import React, { Component } from 'react';
 import SubmitSong from './SubmitSong';
 

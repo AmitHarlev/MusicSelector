@@ -1,8 +1,6 @@
-import fire from './fire';
 import React, { Component } from 'react';
 import UpDoot from './UpDoot';
 import SubmitSong from './SubmitSong';
-import SignOutButton from './SignOutButton';
 
 class MainPanel extends Component {
 

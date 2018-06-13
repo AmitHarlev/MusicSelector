@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import MainPanel from './MainPanel'
 import firebase from 'firebase'
@@ -43,9 +42,6 @@ class App extends Component {
 		});
 
 		fire.database().ref('songs').on('value', (snapshot) => {
-			console.log(snapshot.val());
-			const items = Object.keys(snapshot.val()).map(val => snapshot.val()[val])
-			console.log(Object.keys(snapshot.val()));
 			this.setState({
 				items: snapshot.val()
 			});
