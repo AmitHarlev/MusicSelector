@@ -3,8 +3,6 @@ import './App.css';
 import MainPanel from './MainPanel'
 import firebase from 'firebase'
 import fire from './fire'
-import SignInButton from './SignInButton';
-import SignOutButton from './SignOutButton';
 import ButtonAppBar from './ButtonAppBar';
 
 class App extends Component {
