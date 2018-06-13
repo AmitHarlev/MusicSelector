@@ -5,12 +5,6 @@ import SubmitSong from './SubmitSong';
 import SignOutButton from './SignOutButton';
 
 class MainPanel extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			databaseRecieved: false
-		}
-	}
 
 	SongList = () => {
 		return Object.keys(this.props.items).map((itemKey, index) => (
