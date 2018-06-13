@@ -21,7 +21,7 @@ class SignInButton extends Component {
 
 	render() {
 		return  (
-                    <Button variant="contained" color='secondary' onClick={this.handleGoogleLogin}>
+                    <Button variant="outlined" color='inherit' onClick={this.handleGoogleLogin}>
                         Login
                     </Button>
 		        );

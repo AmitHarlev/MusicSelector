@@ -19,7 +19,7 @@ class SignOutButton extends Component {
 
 	render() {
 		return  (
-                    <Button variant="contained" color='primary' onClick={this.handleSignOut}>
+                    <Button variant="outlined" color='inherit' onClick={this.handleSignOut}>
                         Sign Out
                     </Button>
 		        );

@@ -53,9 +53,8 @@ class App extends Component {
 	render = () => {
 		return this.state.databaseRecieved ? (
 			<div>
-				<ButtonAppBar/>
+				<ButtonAppBar login={this.state.login}/>
 				<MainPanel login={this.state.login} uid={this.uid} items={this.state.items} />
-				{this.state.login ? <SignOutButton /> : <SignInButton />}
 			</div>
 		) : <p> loading.... </p>;
 	}
