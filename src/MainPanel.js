@@ -8,10 +8,12 @@ class MainPanel extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			items: []
+			items: {},
+			sortedKeys: []
 		}
 
 		fire.database().ref('songs').on('value', (snapshot) => {
+
 			console.log(snapshot.val());
 			const items = Object.keys(snapshot.val()).map(val => snapshot.val()[val])
 			console.log(Object.keys(snapshot.val()));
@@ -19,12 +21,19 @@ class MainPanel extends Component {
 				items: snapshot.val()
 			});
 		});
+
+
 	}
 
 	SongList = () => {
-		return Object.keys(this.state.items).map((itemKey, index) => (
-			<span key={itemKey}><li>{this.state.items[itemKey].name} <UpDoot uid={this.props.uid} value={(this.state.items[itemKey].votes) ? Object.keys(this.state.items[itemKey].votes).length : 0} id={itemKey} login={this.props.login}/></li></span>
+		return sortedKeys.map((itemKey, index) => (
+			<span key={itemKey}><li><UpDoot uid={this.props.uid} value={this.getSongVoteCount(itemKey)} id={itemKey} login={this.props.login}/>{this.state.items[itemKey].name}</li></span>
 		));
+	}
+
+	getSongVoteCount = (songKey) => {
+		console.log(this.state.items[songKey])
+		return (this.state.items[songKey].votes) ? Object.keys(this.state.items[songKey].votes).length : 0
 	}
 
 	render() {
