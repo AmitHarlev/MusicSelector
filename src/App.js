@@ -54,7 +54,7 @@ class App extends Component {
 	}
 
 
-	render() {
+	render = () => {
 		return this.state.databaseRecieved ? (
 			<div>
 				<ButtonAppBar/>
