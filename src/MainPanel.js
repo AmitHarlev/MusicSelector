@@ -8,26 +8,17 @@ class MainPanel extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			items: []
+			databaseRecieved: false
 		}
-
-		fire.database().ref('songs').on('value', (snapshot) => {
-			console.log(snapshot.val());
-			const items = Object.keys(snapshot.val()).map(val => snapshot.val()[val])
-			console.log(Object.keys(snapshot.val()));
-			this.setState({
-				items: snapshot.val()
-			});
-		});
 	}
 
 	SongList = () => {
-		return Object.keys(this.state.items).map((itemKey, index) => (
-			<span key={itemKey}><li>{this.state.items[itemKey].name} <UpDoot uid={this.props.uid} value={(this.state.items[itemKey].votes) ? Object.keys(this.state.items[itemKey].votes).length : 0} id={itemKey} login={this.props.login}/></li></span>
+		return Object.keys(this.props.items).map((itemKey, index) => (
+			<span key={itemKey}><li>{this.props.items[itemKey].name} <UpDoot uid={this.props.uid} value={(this.props.items[itemKey].votes) ? Object.keys(this.props.items[itemKey].votes).length : 0} id={itemKey} login={this.props.login}/></li></span>
 		));
 	}
 
-	render() {
+	render = () => {
 		return (
 			<div>
 				<h1>{this.props.login}</h1>

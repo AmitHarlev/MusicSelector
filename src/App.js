@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import MainPanel from './MainPanel'
 import firebase from 'firebase'
+import fire from './fire'
 import SignInButton from './SignInButton';
 import SignOutButton from './SignOutButton';
 
@@ -12,10 +13,11 @@ class App extends Component {
 		super(props);
 
 		this.state = {
-			login: false
+			login: false,
+			databaseRecieved: false,
+			items: {}
 		}
 
-		this.login = false
 
 		firebase.auth().onAuthStateChanged(user => {
 			if (user) {
@@ -38,15 +40,26 @@ class App extends Component {
 				});
 			}
 		});
+
+		fire.database().ref('songs').on('value', (snapshot) => {
+			console.log(snapshot.val());
+			const items = Object.keys(snapshot.val()).map(val => snapshot.val()[val])
+			console.log(Object.keys(snapshot.val()));
+			this.setState({
+				items: snapshot.val()
+			});
+			this.setState({databaseRecieved: true});
+		});
 	}
 
+
 	render() {
-		return (
+		return this.state.databaseRecieved ? (
 			<div>
-				<MainPanel login={this.state.login} uid={this.uid} />
+				<MainPanel login={this.state.login} uid={this.uid} items={this.state.items} />
 				{this.state.login ? <SignOutButton /> : <SignInButton />}
 			</div>
-		);
+		) : <p> loading.... </p>;
 	}
 }
 

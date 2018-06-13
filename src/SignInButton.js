@@ -10,13 +10,13 @@ class SignInButton extends Component {
 
         this.provider = new firebase.auth.GoogleAuthProvider();
         this.provider.setCustomParameters({
-            'hd': 'dtechhs.org'
+            'hd': 'dtechhs.org','prompt':'select_account'
           });
 		firebase.auth().useDeviceLanguage();
     }
 
     handleGoogleLogin = () => {
-		firebase.auth().signInWithRedirect(this.provider);
+	    firebase.auth().signInWithRedirect(this.provider);
 	}
 
 	render() {
