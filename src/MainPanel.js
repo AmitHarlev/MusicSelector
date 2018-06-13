@@ -1,7 +1,5 @@
-import fire from './fire';
 import React, { Component } from 'react';
 import SubmitSong from './SubmitSong';
-import SignOutButton from './SignOutButton';
 import SongPost from './SongPost';
 import getSongVoteCount from './Utilities';
 

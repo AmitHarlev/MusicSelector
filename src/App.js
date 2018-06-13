@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import MainPanel from './MainPanel'
 import firebase from 'firebase'
 import fire from './fire'
 import SignInButton from './SignInButton';
 import SignOutButton from './SignOutButton';
+import ButtonAppBar from './ButtonAppBar';
 
 class App extends Component {
 
@@ -42,9 +42,6 @@ class App extends Component {
 		});
 
 		fire.database().ref('songs').on('value', (snapshot) => {
-			console.log(snapshot.val());
-			const items = Object.keys(snapshot.val()).map(val => snapshot.val()[val])
-			console.log(Object.keys(snapshot.val()));
 			this.setState({
 				items: snapshot.val()
 			});
@@ -56,6 +53,7 @@ class App extends Component {
 	render = () => {
 		return this.state.databaseRecieved ? (
 			<div>
+				<ButtonAppBar/>
 				<MainPanel login={this.state.login} uid={this.uid} items={this.state.items} />
 				{this.state.login ? <SignOutButton /> : <SignInButton />}
 			</div>
