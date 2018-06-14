@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import { Paper } from '@material-ui/core';
+
+const style = {
+	padding: "15px",
+	margin: "20px"
+}
 
 class SongSearch extends Component {
 	constructor(props) {
@@ -15,7 +21,7 @@ class SongSearch extends Component {
         // this.search(this.props.search)
 		return(
 			<div>
-                {this.props.videos.map(video => <li>{video.snippet.title}</li>)}
+                {this.props.videos.map(video => <Paper elevation = {4} style = {{margin:"20px"}}><li style={style}>{video.snippet.title}</li></Paper>)}
 			</div>
 			
 		);

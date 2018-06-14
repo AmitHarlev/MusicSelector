@@ -72,7 +72,9 @@ class MainPanel extends Component {
 				<ul style={{listStyleType: "none", padding: "0px"}}>
 					<this.SongList />
 				</ul>
-				<SongSearch videos={this.state.videos}/>
+				<ul style={{listStyleType: "none", padding: "0px"}}>
+					<SongSearch videos={this.state.videos}/>
+				</ul>
 			</div>
 		)
 	}
