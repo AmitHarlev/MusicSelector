@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SubmitSong from './SubmitSong';
 import SongPost from './SongPost';
 import getSongVoteCount from './Utilities';
+import SongSearch from './SongSearch';
 
 class MainPanel extends Component {
 
@@ -24,6 +25,11 @@ class MainPanel extends Component {
 					this.sortedKeys.push(newKeys[i]);
 				}
 			}
+			for (var x = 0; x < this.sortedKeys.length; x++) {
+				if (newKeys.indexOf(this.sortedKeys[x]) === -1) {
+					this.sortedKeys.splice(x, 1)
+				}
+			}
 		}
 		return this.sortedKeys.map((itemKey, index) => (
 			<SongPost key={itemKey} uid={this.props.uid} items={this.props.items} id={itemKey} login={this.props.login}/>
@@ -35,9 +41,10 @@ class MainPanel extends Component {
 			<div>
 				<h1>{this.props.login}</h1>
 				<SubmitSong />
-				<ul>
+				<ul style={{listStyleType: "none", padding: "0px"}}>
 					<this.SongList />
 				</ul>
+				<SongSearch/>
 			</div>
 		)
 	}

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import fire from './fire'
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import Badge from '@material-ui/core/Badge';
+import Remove from '@material-ui/icons/Remove'
+import getSongVoteCount from './Utilities';
 
 class UpDoot extends Component {
 
@@ -12,13 +15,19 @@ class UpDoot extends Component {
 		});
 	}
 
+	hasVoted = () => {
+		var songVotes = this.props.items[this.props.id].votes;
+		return (songVotes) ? ((songVotes[this.props.uid]) ? true : false) : false;
+	}
+
 	render() {
 		return (
-			<span>
-				{this.props.value}--
-				<Button variant="fab" color="primary" aria-label="add" onClick={this.handleClick} disabled={this.props.login ? false : true}>
-					<AddIcon />
-				</Button>
+			<span style={{paddingRight: "15px"}}>
+				<Badge badgeContent={getSongVoteCount(this.props.items, this.props.id)} color="secondary">
+					<Button mini variant="fab" color="primary" aria-label="add" onClick={this.handleClick} disabled={this.props.login ? false : true}>
+						{(this.hasVoted()) ? <Remove/> : <AddIcon/>}
+					</Button>
+				</Badge>
 			</span>
 		);
 	}
