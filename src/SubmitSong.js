@@ -28,7 +28,7 @@ class SubmitSong extends Component {
 	render() {
 		return (
 			<form onSubmit={this.handleSubmit}>
-				<TextField id = "search" label = "Search Song" type="search" margin = "normal" style = {{marginRight:"20px", marginLeft:"20px"}} value={this.state.textBoxValue} onChange={this.handleChange}></TextField>
+				<TextField id = "search" label = "Search Song" type="search" margin = "normal" style = {{marginRight:"20px", marginLeft:"20px",width:"1000px"}} value={this.state.textBoxValue} onChange={this.handleChange}></TextField>
 				<Button variant = "contained" color = "primary" type="submit"><Search/></Button>
 			</form>
 		)

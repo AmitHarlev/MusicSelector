@@ -10,7 +10,7 @@ class App extends Component {
 
 	constructor(props) {
 		super(props);
-
+		document.body.style = 'background:#F0F0F0;';
 		this.state = {
 			login: false,
 			databaseRecieved: false,
