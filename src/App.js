@@ -4,6 +4,7 @@ import MainPanel from './MainPanel'
 import firebase from 'firebase'
 import fire from './fire'
 import ButtonAppBar from './ButtonAppBar';
+import Loading from './Loading'
 
 class App extends Component {
 
@@ -54,7 +55,7 @@ class App extends Component {
 				<ButtonAppBar login={this.state.login} name={this.displayName}/>
 				<MainPanel login={this.state.login} uid={this.uid} items={this.state.items} />
 			</div>
-		) : <p> loading.... </p>;
+		) : <Loading/>;
 	}
 }
 
