@@ -1,4 +1,3 @@
-import fire from './fire';
 import React, { Component } from 'react';
 import { TextField, Button} from '@material-ui/core';
 import Search from '@material-ui/icons/Search'
@@ -18,7 +17,9 @@ class SubmitSong extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault()
 
-		fire.database().ref('songs').push({ name: this.state.textBoxValue});
+		// fire.database().ref('songs').push({ name: this.state.textBoxValue});
+
+		this.props.callback(this.state.textBoxValue);
 
 		this.setState({
 			textBoxValue: ""
