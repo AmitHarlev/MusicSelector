@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { TextField, Button} from '@material-ui/core';
+import Search from '@material-ui/icons/Search'
 
 class SubmitSong extends Component {
 	constructor(props) {
@@ -27,11 +29,11 @@ class SubmitSong extends Component {
 	render() {
 		return (
 			<form onSubmit={this.handleSubmit}>
-				<input type="text" value={this.state.textBoxValue} onChange={this.handleChange}></input>
-				<input type="submit" />
+				<TextField id = "search" label = "Search Song" type="search" margin = "normal" style = {{marginRight:"20px", marginLeft:"20px"}} value={this.state.textBoxValue} onChange={this.handleChange}></TextField>
+				<Button variant = "contained" color = "primary" type="submit"><Search/></Button>
 			</form>
 		)
 	}
 }
 
-export default SubmitSong
+export default SubmitSong	

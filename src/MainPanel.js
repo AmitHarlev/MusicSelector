@@ -31,6 +31,11 @@ class MainPanel extends Component {
 					this.sortedKeys.push(newKeys[i]);
 				}
 			}
+			for (var x = 0; x < this.sortedKeys.length; x++) {
+				if (newKeys.indexOf(this.sortedKeys[x]) === -1) {
+					this.sortedKeys.splice(x, 1)
+				}
+			}
 		}
 		return this.sortedKeys.map((itemKey, index) => (
 			<SongPost key={itemKey} uid={this.props.uid} items={this.props.items} id={itemKey} login={this.props.login}/>
