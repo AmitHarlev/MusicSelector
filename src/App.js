@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import MainPanel from './MainPanel'
 import firebase from 'firebase'
-import SignInButton from './SignInButton';
-import SignOutButton from './SignOutButton';
+import fire from './fire'
+import ButtonAppBar from './ButtonAppBar';
+import Loading from './Loading'
 
 class App extends Component {
 
@@ -12,15 +12,16 @@ class App extends Component {
 		super(props);
 
 		this.state = {
-			login: false
+			login: false,
+			databaseRecieved: false,
+			items: {}
 		}
 
-		this.login = false
 
 		firebase.auth().onAuthStateChanged(user => {
 			if (user) {
 				// User is signed in.
-				// var displayName = user.displayName;
+				this.displayName = user.displayName;
 				// var email = user.email;
 				// var emailVerified = user.emailVerified;
 				// var photoURL = user.photoURL;
@@ -38,15 +39,23 @@ class App extends Component {
 				});
 			}
 		});
+
+		fire.database().ref('songs').on('value', (snapshot) => {
+			this.setState({
+				items: snapshot.val()
+			});
+			this.setState({databaseRecieved: true});
+		});
 	}
 
-	render() {
-		return (
+
+	render = () => {
+		return this.state.databaseRecieved ? (
 			<div>
-				<MainPanel login={this.state.login} uid={this.uid} />
-				{this.state.login ? <SignOutButton /> : <SignInButton />}
+				<ButtonAppBar login={this.state.login} name={this.displayName}/>
+				<MainPanel login={this.state.login} uid={this.uid} items={this.state.items} />
 			</div>
-		);
+		) : <Loading/>;
 	}
 }
 

@@ -1,4 +1,3 @@
-import fire from './fire';
 import React, { Component } from 'react';
 
 const youtubeApiKey = 'AIzaSyDldSB62FVZHCb7VVaLCnMKD-OK1AIiHNE'

@@ -1,37 +1,40 @@
-import fire from './fire';
 import React, { Component } from 'react';
-import UpDoot from './UpDoot';
 import SubmitSong from './SubmitSong';
-import SignOutButton from './SignOutButton';
+import SongPost from './SongPost';
+import getSongVoteCount from './Utilities';
 
 class MainPanel extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			items: []
-		}
 
-		fire.database().ref('songs').on('value', (snapshot) => {
-			console.log(snapshot.val());
-			const items = Object.keys(snapshot.val()).map(val => snapshot.val()[val])
-			console.log(Object.keys(snapshot.val()));
-			this.setState({
-				items: snapshot.val()
-			});
-		});
+	constructor(props) {
+		super(props)
+		this.sortedKeys = [];
 	}
 
 	SongList = () => {
-		return Object.keys(this.state.items).map((itemKey, index) => (
-			<span key={itemKey}><li>{this.state.items[itemKey].name} <UpDoot uid={this.props.uid} value={(this.state.items[itemKey].votes) ? Object.keys(this.state.items[itemKey].votes).length : 0} id={itemKey} login={this.props.login}/></li></span>
+		if (this.sortedKeys.length === 0) {
+			var newSortedKeys = Object.keys(this.props.items);
+			newSortedKeys.sort((a, b) => (
+				getSongVoteCount(this.props.items, b) - getSongVoteCount(this.props.items, a)
+			));
+			this.sortedKeys = newSortedKeys;
+		} else {
+			var newKeys = Object.keys(this.props.items)
+			for (var i = 0; i < newKeys.length; i++) {
+				if (this.sortedKeys.indexOf(newKeys[i]) === -1) {
+					this.sortedKeys.push(newKeys[i]);
+				}
+			}
+		}
+		return this.sortedKeys.map((itemKey, index) => (
+			<SongPost key={itemKey} uid={this.props.uid} items={this.props.items} id={itemKey} login={this.props.login}/>
 		));
 	}
 
-	render() {
+	render = () => {
 		return (
 			<div>
 				<h1>{this.props.login}</h1>
-				<SubmitSong/>
+				<SubmitSong />
 				<ul>
 					<this.SongList />
 				</ul>

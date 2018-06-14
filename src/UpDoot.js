@@ -5,12 +5,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 class UpDoot extends Component {
 
-	constructor(props) {
-		super(props);
-	}
-
 	handleClick = () => {
-		console.log()
 		var songRef = fire.database().ref(`songs/${this.props.id}/votes/${this.props.uid}` )
 		songRef.once("value", (snapshot) => {
 			snapshot.val() ? songRef.remove() : songRef.set(true);
@@ -20,10 +15,10 @@ class UpDoot extends Component {
 	render() {
 		return (
 			<span>
+				{this.props.value}--
 				<Button variant="fab" color="primary" aria-label="add" onClick={this.handleClick} disabled={this.props.login ? false : true}>
 					<AddIcon />
 				</Button>
-				---{this.props.value}
 			</span>
 		);
 	}
