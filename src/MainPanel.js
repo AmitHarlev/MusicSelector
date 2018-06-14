@@ -25,9 +25,9 @@ class MainPanel extends Component {
 					this.sortedKeys.push(newKeys[i]);
 				}
 			}
-			for (var i = 0; i < this.sortedKeys.length; i++) {
-				if (newKeys.indexOf(this.sortedKeys[i]) === -1) {
-					this.sortedKeys.splice(i, 1)
+			for (var x = 0; x < this.sortedKeys.length; x++) {
+				if (newKeys.indexOf(this.sortedKeys[x]) === -1) {
+					this.sortedKeys.splice(x, 1)
 				}
 			}
 		}
