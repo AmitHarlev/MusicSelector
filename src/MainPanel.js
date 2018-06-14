@@ -35,7 +35,7 @@ class MainPanel extends Component {
 			<div>
 				<h1>{this.props.login}</h1>
 				<SubmitSong />
-				<ul>
+				<ul style={{listStyleType: "none", padding: "0px"}}>
 					<this.SongList />
 				</ul>
 			</div>
