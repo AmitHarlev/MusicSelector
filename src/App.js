@@ -20,7 +20,7 @@ class App extends Component {
 		firebase.auth().onAuthStateChanged(user => {
 			if (user) {
 				// User is signed in.
-				// var displayName = user.displayName;
+				this.displayName = user.displayName;
 				// var email = user.email;
 				// var emailVerified = user.emailVerified;
 				// var photoURL = user.photoURL;
@@ -51,7 +51,7 @@ class App extends Component {
 	render = () => {
 		return this.state.databaseRecieved ? (
 			<div>
-				<ButtonAppBar login={this.state.login}/>
+				<ButtonAppBar login={this.state.login} name={this.displayName}/>
 				<MainPanel login={this.state.login} uid={this.uid} items={this.state.items} />
 			</div>
 		) : <p> loading.... </p>;

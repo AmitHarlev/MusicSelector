@@ -3,9 +3,6 @@ import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import SignInButton from "./SignInButton";
 import SignOutButton from "./SignOutButton";
 
@@ -30,9 +27,9 @@ var ButtonAppBar = (props) => {
           <Typography variant="title" color="inherit" className={classes.flex}>
             D.J
           </Typography>
-          <Typography variant="display 1" color="inherit" className={classes.padding}>
-          Hi Amit Harlev
-          </Typography>
+          {(props.name && props.login) ? <Typography color="inherit" className={classes.padding}>
+          Hi {props.name}
+          </Typography> : null}
           {props.login ? <SignOutButton /> : <SignInButton />}
         </Toolbar>
       </AppBar>
