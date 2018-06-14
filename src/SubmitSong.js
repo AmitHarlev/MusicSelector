@@ -1,4 +1,3 @@
-import fire from './fire';
 import React, { Component } from 'react';
 
 class SubmitSong extends Component {
@@ -16,7 +15,9 @@ class SubmitSong extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault()
 
-		fire.database().ref('songs').push({ name: this.state.textBoxValue});
+		// fire.database().ref('songs').push({ name: this.state.textBoxValue});
+
+		this.props.callback(this.state.textBoxValue);
 
 		this.setState({
 			textBoxValue: ""

@@ -4,11 +4,17 @@ import SongPost from './SongPost';
 import getSongVoteCount from './Utilities';
 import SongSearch from './SongSearch';
 
+const youtubeApiKey = 'AIzaSyDldSB62FVZHCb7VVaLCnMKD-OK1AIiHNE'
+
 class MainPanel extends Component {
 
 	constructor(props) {
 		super(props)
 		this.sortedKeys = [];
+		this.state = {
+			videos: []
+		}		
+
 	}
 
 	SongList = () => {
@@ -31,15 +37,37 @@ class MainPanel extends Component {
 		));
 	}
 
+	search = (query) => {
+
+		var part = 'snippet';
+		var maxResults = 5;
+
+		var results = fetch(`https://www.googleapis.com/youtube/v3/search?key=${youtubeApiKey}&q=${query}&part=${part}&maxResults=${maxResults}`);
+		results.then(results => results.json()).then(results=>{
+				var videos = [];
+				results.items.forEach(item => {
+					videos.push(item);
+                })
+                
+                this.setState({
+                    videos: videos
+                });
+		});
+	}
+
+
+	handleSongSubmitted = (input) => {
+		this.search(input)
+	}
+
 	render = () => {
 		return (
 			<div>
-				<h1>{this.props.login}</h1>
-				<SubmitSong />
+				<SubmitSong callback={this.handleSongSubmitted}/>
 				<ul style={{listStyleType: "none", padding: "0px"}}>
 					<this.SongList />
 				</ul>
-				<SongSearch/>
+				<SongSearch videos={this.state.videos}/>
 			</div>
 		)
 	}
