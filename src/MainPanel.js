@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SubmitSong from './SubmitSong';
 import SongPost from './SongPost';
 import getSongVoteCount from './Utilities';
+import SongSearch from './SongSearch';
 
 class MainPanel extends Component {
 
@@ -38,6 +39,7 @@ class MainPanel extends Component {
 				<ul>
 					<this.SongList />
 				</ul>
+				<SongSearch/>
 			</div>
 		)
 	}
