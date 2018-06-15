@@ -22,7 +22,7 @@ class SongSearch extends Component {
 								</Button>
 							</span>
 							<img src={video.snippet.thumbnails.default.url} alt="Song Thumbnail" />
-							<a href={`http://youtu.be/${video.id.videoId}`}>{video.snippet.title}</a>
+							<a href={`http://youtu.be/${video.id.videoId}`} style={{textDecoration:"none"}}>{video.snippet.title}</a>
 						</li>
 					</Paper>
 				)}
