@@ -53,7 +53,6 @@ class MainPanel extends Component {
 		results.then(results => results.json()).then(results=>{
 				var videos = [];
 				results.items.forEach(item => {
-					console.table(item);
 					videos.push(item);
                 })
                 
@@ -75,7 +74,16 @@ class MainPanel extends Component {
 		this.setState({
 			searched:false
 		})
-		fire.database().ref('songs').push({ name: song, link: songLink});
+		var songLinkArray = [];
+		for(var item in this.props.items) {
+			songLinkArray.push(this.props.items[item].link);
+		}
+		console.log(songLinkArray, songLink)
+		if(songLinkArray.indexOf(songLink)===-1){
+			fire.database().ref('songs').push({ name: song, link: songLink});
+		} else {
+			alert("That song is already on the list. Please go vote for it if you would like it to play!");
+		}
 	}
 
 	render = () => {
