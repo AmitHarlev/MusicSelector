@@ -99,7 +99,7 @@ class MainPanel extends Component {
 				{this.state.searched ?
 					<ul style={{ listStyleType: "none", padding: "0px" }}>
 						<SongSearch videos={this.state.videos} callback={this.handleSongSelected} />
-						<Button variant = "contained" color = "primary" onClick={this.handleBackButton}>Back</Button>
+						<Button style={{ margin: "20px" }} variant = "contained" color = "primary" onClick={this.handleBackButton}>Back</Button>
 					</ul> :
 					<ul style={{ listStyleType: "none", padding: "0px" }}>
 						<this.SongList />

@@ -51,9 +51,15 @@ class App extends Component {
 		});
 
 		fire.database().ref('songs').on('value', (snapshot) => {
-			this.setState({
-				items: snapshot.val()
-			});
+			if(snapshot.val() != undefined){
+				this.setState({
+					items: snapshot.val()
+				});
+			} else {
+				this.setState({
+					items: {}
+				});
+			}
 			this.setState({databaseRecieved: true});
 		});
 	}
