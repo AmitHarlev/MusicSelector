@@ -11,7 +11,6 @@ ReactDOM.render(
 		<Router>
 			<Switch>
 				<Route path="/app" component={App}/>
-				<Route path="/search" component={Search}/>
 				<Redirect from="/" to="app" />
 			</Switch>
 		</Router>
