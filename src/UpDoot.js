@@ -23,9 +23,10 @@ class UpDoot extends Component {
 	render() {
 		return (
 			<span style={{paddingRight: "15px"}}>
-				<Badge badgeContent={getSongVoteCount(this.props.items, this.props.id)} color="secondary">
-					<Button mini variant="fab" color="primary" aria-label="add" onClick={this.handleClick} disabled={this.props.login ? false : true}>
-						{(this.hasVoted()) ? <Remove/> : <AddIcon/>}
+				<Badge badgeContent={getSongVoteCount(this.props.items, this.props.id)} color={(this.hasVoted()) ? "secondary" : "primary"}>
+					<Button mini variant="fab" color="default" aria-label="add" onClick={this.handleClick} disabled={this.props.login ? false : true}>
+						{(this.hasVoted()) ? <i class="material-icons" style={{color:'#f44336',fontSize:"150%"}}>keyboard_arrow_up</i> : <i class="material-icons" style={{color:"grey",fontSize:"150%"	}}>keyboard_arrow_up</i> }
+						
 					</Button>
 				</Badge>
 			</span>

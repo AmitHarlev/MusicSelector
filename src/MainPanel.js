@@ -4,8 +4,7 @@ import SongPost from './SongPost';
 import getSongVoteCount from './Utilities';
 import SongSearch from './SongSearch';
 import fire from './fire';
-
-const youtubeApiKey = 'AIzaSyDldSB62FVZHCb7VVaLCnMKD-OK1AIiHNE'
+import youtubeApiKey from './ApiKeys';
 
 class MainPanel extends Component {
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Paper, Button } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add'
 
 
 const style = {
@@ -32,9 +33,7 @@ class SongSearch extends Component {
                         <li style={style}>
                             <span style={{paddingRight: "15px"}}>
                                 <Button mini variant="fab" color="primary" onClick={() => this.props.callback(video.snippet.title,`http://youtu.be/${video.id.videoId}`)}>
-                                    <i className="material-icons">
-                                        check
-                                    </i>
+									<AddIcon/>
                                 </Button>
                             </span>
                             <a href={`http://youtu.be/${video.id.videoId}`}>{video.snippet.title}</a>
