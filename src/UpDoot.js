@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import fire from './fire'
 import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
 import Badge from '@material-ui/core/Badge';
-import Remove from '@material-ui/icons/Remove'
 import getSongVoteCount from './Utilities';
 
 class UpDoot extends Component {
