@@ -16,7 +16,7 @@ class SongPost extends React.Component {
 				<Paper elevation = {4} style = {{margin:"20px"}}>
 					<li style={style}>
 						<UpDoot uid={this.props.uid} items={this.props.items} id={this.props.id} login={this.props.login} />
-						<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">{this.props.items[this.props.id].name}</a>
+						<a href={this.props.items[this.props.id].link}>{this.props.items[this.props.id].name}</a>
 					</li>
 				</Paper>
 			</span>

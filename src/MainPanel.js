@@ -4,8 +4,7 @@ import SongPost from './SongPost';
 import getSongVoteCount from './Utilities';
 import SongSearch from './SongSearch';
 import fire from './fire';
-
-const youtubeApiKey = 'AIzaSyDldSB62FVZHCb7VVaLCnMKD-OK1AIiHNE'
+import youtubeApiKey from './ApiKeys';
 
 class MainPanel extends Component {
 
@@ -49,10 +48,11 @@ class MainPanel extends Component {
 		var part = 'snippet';
 		var maxResults = 5;
 
-		var results = fetch(`https://www.googleapis.com/youtube/v3/search?key=${youtubeApiKey}&q=${query}&part=${part}&maxResults=${maxResults}`);
+		var results = fetch(`https://www.googleapis.com/youtube/v3/search?key=${youtubeApiKey}&q=${query}&part=${part}&maxResults=${maxResults}&type=video&videoCategoryId=10`);
 		results.then(results => results.json()).then(results=>{
 				var videos = [];
 				results.items.forEach(item => {
+					console.table(item);
 					videos.push(item);
                 })
                 
@@ -70,11 +70,11 @@ class MainPanel extends Component {
 		});
 	}
 
-	handleSongSelected = (song) => {
+	handleSongSelected = (song, songLink) => {
 		this.setState({
 			searched:false
 		})
-		fire.database().ref('songs').push({ name: song});
+		fire.database().ref('songs').push({ name: song, link: songLink});
 	}
 
 	render = () => {
