@@ -27,7 +27,7 @@ class SubmitSong extends Component {
 	render() {
 		return (
 			<form onSubmit={this.handleSubmit}>
-				<TextField id = "search" label = "Search Song" type="search" margin = "normal" style = {{marginRight:"20px", marginLeft:"20px",width:"60%"}} value={this.state.textBoxValue} onChange={this.handleChange} disabled={this.props.login ? false : true}></TextField>
+				<TextField id = "search" label={this.props.login ? "Search Song" : "Please Login To Search Song"} type="search" margin = "normal" style = {{marginRight:"20px", marginLeft:"20px",width:"60%"}} value={this.state.textBoxValue} onChange={this.handleChange} disabled={this.props.login ? false : true}></TextField>
 				<Button variant = "contained" color = "primary" type="submit" disabled={this.props.login ? false : true}><Search/></Button>
 			</form>
 		)
