@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Paper, Button } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add'
+import SongDetails from './SongDetails';
 
 
 const style = {
@@ -21,7 +22,7 @@ class SongSearch extends Component {
 									<AddIcon />
 								</Button>
 							</span>
-							<a href={`http://youtu.be/${video.id.videoId}`}><img src={video.snippet.thumbnails.default.url} alt="Song Thumbnail" />{video.snippet.title}</a>
+							<SongDetails videoUrl={`http://youtu.be/${video.id.videoId}`} thumbnailUrl={video.snippet.thumbnails.default.url} songTitle={video.snippet.title}/>
 						</li>
 					</Paper>
 				)}

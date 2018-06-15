@@ -1,6 +1,7 @@
 import React from 'react';
 import UpDoot from './UpDoot';
 import { Paper } from '@material-ui/core';
+import SongDetails from './SongDetails';
 
 class SongPost extends React.Component {
 
@@ -16,7 +17,7 @@ class SongPost extends React.Component {
 				<Paper elevation = {4} style = {{margin:"20px"}}>
 					<li style={style}>
 						<UpDoot uid={this.props.uid} items={this.props.items} id={this.props.id} login={this.props.login} />
-						<a href={this.props.items[this.props.id].link}><img src={this.props.items[this.props.id].thumbnail} alt="Song Thumbnail" align="middle" style={{marginLeft:"20px", marginRight:"20px"}}/>{this.props.items[this.props.id].name}</a>
+						<SongDetails videoUrl={this.props.items[this.props.id].link} thumbnailUrl={this.props.items[this.props.id].thumbnail} songTitle={this.props.items[this.props.id].name}/>
 					</li>
 				</Paper>
 			</span>
