@@ -13,8 +13,8 @@ class MainPanel extends Component {
 		this.sortedKeys = [];
 		this.state = {
 			videos: [],
-			searched:false
-		}		
+			searched: false
+		}
 
 	}
 
@@ -39,7 +39,7 @@ class MainPanel extends Component {
 			}
 		}
 		return this.sortedKeys.map((itemKey, index) => (
-			<SongPost key={itemKey} uid={this.props.uid} items={this.props.items} id={itemKey} login={this.props.login}/>
+			<SongPost key={itemKey} uid={this.props.uid} items={this.props.items} id={itemKey} login={this.props.login} />
 		));
 	}
 
@@ -49,16 +49,17 @@ class MainPanel extends Component {
 		var maxResults = 5;
 
 		var results = fetch(`https://www.googleapis.com/youtube/v3/search?key=${youtubeApiKey}&q=${query}&part=${part}&maxResults=${maxResults}&type=video&videoCategoryId=10`);
-		results.then(results => results.json()).then(results=>{
-				var videos = [];
-				results.items.forEach(item => {
-					console.table(item);
-					videos.push(item);
-                })
-                
-                this.setState({
-                    videos: videos
-                });
+		results.then(results => results.json()).then(results => {
+			console.log(results);
+			var videos = [];
+			results.items.forEach(item => {
+				console.table(item);
+				videos.push(item);
+			})
+
+			this.setState({
+				videos: videos
+			});
 		});
 	}
 
@@ -66,28 +67,29 @@ class MainPanel extends Component {
 	handleSongSubmitted = (input) => {
 		this.search(input)
 		this.setState({
-			searched:true
+			searched: true
 		});
 	}
 
-	handleSongSelected = (song, songLink) => {
+	handleSongSelected = (song, songLink, thumbnailLink) => {
 		this.setState({
-			searched:false
+			searched: false
 		})
-		fire.database().ref('songs').push({ name: song, link: songLink});
+		fire.database().ref('songs').push({ name: song, link: songLink, thumbnail: thumbnailLink });
 	}
 
 	render = () => {
 		return (
 			<div>
-				<SubmitSong callback={this.handleSongSubmitted} login={this.props.login}/>
-				{this.state.searched ? 
-				<ul style={{listStyleType: "none", padding: "0px"}}>
-					<SongSearch videos={this.state.videos} callback={this.handleSongSelected}/>
-				</ul> :
-				<ul style={{listStyleType: "none", padding: "0px"}}>
-					<this.SongList/>
-				</ul>}
+				<SubmitSong callback={this.handleSongSubmitted} login={this.props.login} />
+				{this.state.searched ?
+					<ul style={{ listStyleType: "none", padding: "0px" }}>
+						<SongSearch videos={this.state.videos} callback={this.handleSongSelected} />
+					</ul> :
+					<ul style={{ listStyleType: "none", padding: "0px" }}>
+						<this.SongList />
+					</ul>
+				}
 			</div>
 		)
 	}
