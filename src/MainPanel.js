@@ -5,6 +5,7 @@ import getSongVoteCount from './Utilities';
 import SongSearch from './SongSearch';
 import fire from './fire';
 import youtubeApiKey from './ApiKeys';
+import Button from '@material-ui/core/Button';
 
 class MainPanel extends Component {
 
@@ -85,6 +86,12 @@ class MainPanel extends Component {
 		}
 	}
 
+	handleBackButton = () => {
+		this.setState({
+			searched:false
+		})
+	}
+
 	render = () => {
 		return (
 			<div>
@@ -92,6 +99,7 @@ class MainPanel extends Component {
 				{this.state.searched ?
 					<ul style={{ listStyleType: "none", padding: "0px" }}>
 						<SongSearch videos={this.state.videos} callback={this.handleSongSelected} />
+						<Button variant = "contained" color = "primary" onClick={this.handleBackButton}>Back</Button>
 					</ul> :
 					<ul style={{ listStyleType: "none", padding: "0px" }}>
 						<this.SongList />
