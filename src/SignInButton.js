@@ -4,28 +4,26 @@ import firebase from 'firebase'
 
 class SignInButton extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {};
+	constructor(props) {
+		super(props);
+		this.state = {};
 
-        this.provider = new firebase.auth.GoogleAuthProvider();
-        this.provider.setCustomParameters({
-            'hd': 'dtechhs.org','prompt':'select_account'
-          });
+		this.provider = new firebase.auth.GoogleAuthProvider();
+		this.provider.setCustomParameters({
+			'hd': 'dtechhs.org', 'prompt': 'select_account'
+		});
 		firebase.auth().useDeviceLanguage();
-    }
+	}
 
-    handleGoogleLogin = () => {
-	    firebase.auth().signInWithRedirect(this.provider);
+	handleGoogleLogin = () => {
+		firebase.auth().signInWithRedirect(this.provider);
 	}
 
 	render() {
-		return  (
-                    <Button variant="outlined" color='inherit' onClick={this.handleGoogleLogin}>
-                        Login
-                    </Button>
-		        );
-    }
+		return (
+			<Button variant="outlined" color='inherit' onClick={this.handleGoogleLogin}>Login</Button>
+		);
+	}
 
 }
 

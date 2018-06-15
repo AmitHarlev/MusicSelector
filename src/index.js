@@ -9,7 +9,7 @@ ReactDOM.render(
 	(
 		<Router>
 			<Switch>
-				<Route path="/app" component={App}/>
+				<Route path="/app" component={App} />
 				<Redirect from="/" to="app" />
 			</Switch>
 		</Router>

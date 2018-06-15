@@ -22,7 +22,7 @@ class SongSearch extends Component {
 									<AddIcon />
 								</Button>
 							</span>
-							<SongDetails videoUrl={`http://youtu.be/${video.id.videoId}`} thumbnailUrl={video.snippet.thumbnails.default.url} songTitle={video.snippet.title}/>
+							<SongDetails videoUrl={`http://youtu.be/${video.id.videoId}`} thumbnailUrl={video.snippet.thumbnails.default.url} songTitle={video.snippet.title} />
 						</li>
 					</Paper>
 				)}

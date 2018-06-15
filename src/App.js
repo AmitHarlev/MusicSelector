@@ -29,17 +29,17 @@ class App extends Component {
 				this.uid = user.uid;
 				// var providerData = user.providerData;
 				var email = user.email.split('@')
-				if(email[email.length-1]==="dtechhs.org"){
+				if (email[email.length - 1] === "dtechhs.org") {
 					this.setState({
 						login: true
 					});
-				}else{
+				} else {
 					alert("You are attempting to use a non-dtechhs email! Please sign in with your school email.");
-					firebase.auth().signOut().then(function() {
+					firebase.auth().signOut().then(function () {
 						// Sign-out successful.
-					  }).catch(function(error) {
+					}).catch(function (error) {
 						// An error happened.
-					  });
+					});
 				}
 				// ...
 			} else {
@@ -51,7 +51,7 @@ class App extends Component {
 		});
 
 		fire.database().ref('songs').on('value', (snapshot) => {
-			if(snapshot.val() != undefined){
+			if (snapshot.val() !== undefined) {
 				this.setState({
 					items: snapshot.val()
 				});
@@ -60,7 +60,7 @@ class App extends Component {
 					items: {}
 				});
 			}
-			this.setState({databaseRecieved: true});
+			this.setState({ databaseRecieved: true });
 		});
 	}
 
@@ -68,10 +68,10 @@ class App extends Component {
 	render = () => {
 		return this.state.databaseRecieved ? (
 			<div>
-				<ButtonAppBar login={this.state.login} name={this.displayName}/>
+				<ButtonAppBar login={this.state.login} name={this.displayName} />
 				<MainPanel login={this.state.login} uid={this.uid} items={this.state.items} />
 			</div>
-		) : <Loading/>;
+		) : <Loading />;
 	}
 }
 
