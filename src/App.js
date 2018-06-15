@@ -29,12 +29,17 @@ class App extends Component {
 				this.uid = user.uid;
 				// var providerData = user.providerData;
 				var email = user.email.split('@')
-				if(email[email.length-1]=="dtechhs.org"){
+				if(email[email.length-1]==="dtechhs.org"){
 					this.setState({
 						login: true
 					});
 				}else{
-					alert("You are attempting to use a non-dtechhs email! Please sign in with your school email.")
+					alert("You are attempting to use a non-dtechhs email! Please sign in with your school email.");
+					firebase.auth().signOut().then(function() {
+						// Sign-out successful.
+					  }).catch(function(error) {
+						// An error happened.
+					  });
 				}
 				// ...
 			} else {
