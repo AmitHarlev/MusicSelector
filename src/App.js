@@ -28,9 +28,14 @@ class App extends Component {
 				// var isAnonymous = user.isAnonymous;
 				this.uid = user.uid;
 				// var providerData = user.providerData;
-				this.setState({
-					login: true
-				});
+				var email = user.email.split('@')
+				if(email[email.length-1]=="dtechhs.org"){
+					this.setState({
+						login: true
+					});
+				}else{
+					alert("You are attempting to use a non-dtechhs email! Please sign in with your school email.")
+				}
 				// ...
 			} else {
 				// ...
