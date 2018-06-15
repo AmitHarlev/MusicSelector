@@ -1,6 +1,5 @@
 import React from 'react';
 import UpDoot from './UpDoot';
-import grey from '@material-ui/core/colors/grey'
 import { Paper } from '@material-ui/core';
 
 class SongPost extends React.Component {
