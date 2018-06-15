@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Paper } from '@material-ui/core';
+import { Paper, Button } from '@material-ui/core';
+
 
 const style = {
 	padding: "15px",
@@ -12,16 +13,34 @@ class SongSearch extends Component {
 		this.state = {
             videos: []
         }
-        this.loadYoutubeApis
+
+        this.loadYoutubeAPI();
         
     }
 
 
+    loadYoutubeAPI = () => {
+        this.loadYoutubeApis
+    }
+
+
 	render() {
-        // this.search(this.props.search)
 		return(
 			<div>
-                {this.props.videos.map(video => <Paper elevation = {4} style = {{margin:"20px"}}><li style={style}>{video.snippet.title}</li></Paper>)}
+                {this.props.videos.map((video,index) => 
+                    <Paper elevation = {4} style = {{margin:"20px"}} key={index}>
+                        <li style={style}>
+                            <span style={{paddingRight: "15px"}}>
+                                <Button mini variant="fab" color="primary" onClick={() => this.props.callback(video.snippet.title)}>
+                                    <i className="material-icons">
+                                        check
+                                    </i>
+                                </Button>
+                            </span>
+                            {video.snippet.title}
+                        </li>
+                    </Paper>
+                )}
 			</div>
 			
 		);

@@ -3,6 +3,7 @@ import SubmitSong from './SubmitSong';
 import SongPost from './SongPost';
 import getSongVoteCount from './Utilities';
 import SongSearch from './SongSearch';
+import fire from './fire';
 
 const youtubeApiKey = 'AIzaSyDldSB62FVZHCb7VVaLCnMKD-OK1AIiHNE'
 
@@ -12,7 +13,8 @@ class MainPanel extends Component {
 		super(props)
 		this.sortedKeys = [];
 		this.state = {
-			videos: []
+			videos: [],
+			searched:false
 		}		
 
 	}
@@ -63,18 +65,29 @@ class MainPanel extends Component {
 
 	handleSongSubmitted = (input) => {
 		this.search(input)
+		this.setState({
+			searched:true
+		});
+	}
+
+	handleSongSelected = (song) => {
+		this.setState({
+			searched:false
+		})
+		fire.database().ref('songs').push({ name: song});
 	}
 
 	render = () => {
 		return (
 			<div>
-				<SubmitSong callback={this.handleSongSubmitted}/>
+				<SubmitSong callback={this.handleSongSubmitted} login={this.props.login}/>
+				{this.state.searched ? 
 				<ul style={{listStyleType: "none", padding: "0px"}}>
-					<this.SongList />
-				</ul>
+					<SongSearch videos={this.state.videos} callback={this.handleSongSelected}/>
+				</ul> :
 				<ul style={{listStyleType: "none", padding: "0px"}}>
-					<SongSearch videos={this.state.videos}/>
-				</ul>
+					<this.SongList/>
+				</ul>}
 			</div>
 		)
 	}

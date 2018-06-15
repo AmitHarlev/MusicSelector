@@ -17,8 +17,6 @@ class SubmitSong extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault()
 
-		// fire.database().ref('songs').push({ name: this.state.textBoxValue});
-
 		this.props.callback(this.state.textBoxValue);
 
 		this.setState({
@@ -29,8 +27,8 @@ class SubmitSong extends Component {
 	render() {
 		return (
 			<form onSubmit={this.handleSubmit}>
-				<TextField id = "search" label = "Search Song" type="search" margin = "normal" style = {{marginRight:"20px", marginLeft:"20px",width:"60%"}} value={this.state.textBoxValue} onChange={this.handleChange}></TextField>
-				<Button variant = "contained" color = "primary" type="submit"><Search/></Button>
+				<TextField id = "search" label = "Search Song" type="search" margin = "normal" style = {{marginRight:"20px", marginLeft:"20px",width:"60%"}} value={this.state.textBoxValue} onChange={this.handleChange} disabled={this.props.login ? false : true}></TextField>
+				<Button variant = "contained" color = "primary" type="submit" disabled={this.props.login ? false : true}><Search/></Button>
 			</form>
 		)
 	}
