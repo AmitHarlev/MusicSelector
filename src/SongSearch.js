@@ -9,7 +9,7 @@ const style = {
 }
 
 class SongSearch extends Component {
-	
+
 	render() {
 		return (
 			<div>
@@ -21,8 +21,7 @@ class SongSearch extends Component {
 									<AddIcon />
 								</Button>
 							</span>
-							<img src={video.snippet.thumbnails.default.url} alt="Song Thumbnail" />
-							<a href={`http://youtu.be/${video.id.videoId}`}>{video.snippet.title}</a>
+							<a href={`http://youtu.be/${video.id.videoId}`}><img src={video.snippet.thumbnails.default.url} alt="Song Thumbnail" />{video.snippet.title}</a>
 						</li>
 					</Paper>
 				)}
