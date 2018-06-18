@@ -6,6 +6,7 @@ import SongSearch from './SongSearch';
 import fire from './fire';
 import youtubeApiKey from './ApiKeys';
 import Button from '@material-ui/core/Button';
+import { Typography } from '@material-ui/core';
 
 class MainPanel extends Component {
 
@@ -98,6 +99,7 @@ class MainPanel extends Component {
 				<SubmitSong callback={this.handleSongSubmitted} login={this.props.login} />
 				{this.state.searched ?
 					<ul style={{ listStyleType: "none", padding: "0px" }}>
+						<Typography style={{ margin: "20px", fontWeight: "bold" }}>Please note that submitting a song will record your email and that it will be visible to staff members. Please do not submit any explicit songs.</Typography>
 						<SongSearch videos={this.state.videos} callback={this.handleSongSelected} />
 						<Button style={{ margin: "20px" }} variant = "contained" color = "primary" onClick={this.handleBackButton}>Back</Button>
 					</ul> :
