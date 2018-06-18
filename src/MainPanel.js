@@ -40,7 +40,7 @@ class MainPanel extends Component {
 			}
 		}
 		return this.sortedKeys.map((itemKey, index) => (
-			<SongPost key={itemKey} uid={this.props.uid} items={this.props.items} id={itemKey} login={this.props.login} />
+			<SongPost key={itemKey} uid={this.props.uid} items={this.props.items} id={itemKey} login={this.props.login} admin={this.props.admin} userName={this.props.userName}/>
 		));
 	}
 
