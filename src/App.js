@@ -34,7 +34,7 @@ class App extends Component {
 					this.setState({
 						login: true
 					});
-					if(this.isNumeric(email[email.length-2].charAt(email[email.length-2].length-1))){
+					if(!this.isNumeric(email[email.length-2].charAt(email[email.length-2].length-1))){
 						this.setState({
 							admin: true
 						})
