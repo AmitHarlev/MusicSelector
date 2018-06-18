@@ -6,6 +6,8 @@ import SongSearch from './SongSearch';
 import fire from './fire';
 import youtubeApiKey from './ApiKeys';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import App from './App';
 
 class MainPanel extends Component {
 
@@ -101,6 +103,8 @@ class MainPanel extends Component {
 						<SongSearch videos={this.state.videos} callback={this.handleSongSelected} />
 						<Button style={{ margin: "20px" }} variant = "contained" color = "primary" onClick={this.handleBackButton}>Back</Button>
 					</ul> :
+					(this.props.noSongs) ?
+					<Typography style={{fontFamily:"Roboto", color:'grey', margin:"20px", fontSize:'100%'}}>No Songs Yet! </Typography> :
 					<ul style={{ listStyleType: "none", padding: "0px" }}>
 						<this.SongList />
 					</ul>
