@@ -15,7 +15,7 @@ class App extends Component {
 			login: false,
 			databaseRecieved: false,
 			items: {},
-			admin: true
+			admin: false
 		}
 
 
@@ -34,7 +34,7 @@ class App extends Component {
 					this.setState({
 						login: true
 					});
-					if (this.isNumeric(email[email.length - 2].charAt(email[email.length - 2].length - 1))) {
+					if (!this.isNumeric(email[email.length - 2].charAt(email[email.length - 2].length - 1))) {
 						this.setState({
 							admin: true
 						})
@@ -57,14 +57,17 @@ class App extends Component {
 		});
 
 		fire.database().ref('songs').on('value', (snapshot) => {
-			if (snapshot.val() !== undefined) {
+			if (snapshot.val() != undefined) {
+				this.noSongs = false;
 				this.setState({
 					items: snapshot.val()
 				});
 			} else {
+				this.noSongs = true;
 				this.setState({
 					items: {}
 				});
+
 			}
 			this.setState({ databaseRecieved: true });
 		});
@@ -79,7 +82,7 @@ class App extends Component {
 		return this.state.databaseRecieved ? (
 			<div>
 				<ButtonAppBar login={this.state.login} name={this.displayName} />
-				<MainPanel login={this.state.login} uid={this.uid} items={this.state.items} admin={this.state.admin} userName={this.email} />
+				<MainPanel login={this.state.login} uid={this.uid} items={this.state.items} admin={this.state.admin} userName={this.email} noSongs={this.noSongs} />
 			</div>
 		) : <Loading />;
 	}

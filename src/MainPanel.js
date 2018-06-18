@@ -6,6 +6,7 @@ import SongSearch from './SongSearch';
 import fire from './fire';
 import youtubeApiKey from './ApiKeys';
 import Button from '@material-ui/core/Button';
+import { Typography } from '@material-ui/core';
 
 class MainPanel extends Component {
 
@@ -80,7 +81,7 @@ class MainPanel extends Component {
 		}
 		console.log(songLinkArray, songLink)
 		if (songLinkArray.indexOf(songLink) === -1) {
-			fire.database().ref('songs').push({ name: song, link: songLink, thumbnail: thumbnailLink });
+			fire.database().ref('songs').push({ name: song, link: songLink, thumbnail: thumbnailLink, user: this.props.userName});
 		} else {
 			alert("That song is already on the list. Please go vote for it if you would like it to play!");
 		}
@@ -98,9 +99,12 @@ class MainPanel extends Component {
 				<SubmitSong callback={this.handleSongSubmitted} login={this.props.login} />
 				{this.state.searched ?
 					<ul style={{ listStyleType: "none", padding: "0px" }}>
+						<Typography style={{ margin: "20px", fontWeight: "bold" }}>Please note that submitting a song will record your email and that it will be visible to staff members. Please do not submit any explicit songs.</Typography>
 						<SongSearch videos={this.state.videos} callback={this.handleSongSelected} />
 						<Button style={{ margin: "20px" }} variant="contained" color="primary" onClick={this.handleBackButton}>Back</Button>
 					</ul> :
+					(this.props.noSongs) ?
+					<Typography style={{fontFamily:"Roboto", color:'grey', margin:"20px", fontSize:'100%'}}>No Songs Yet! </Typography> :
 					<ul style={{ listStyleType: "none", padding: "0px" }}>
 						<this.SongList />
 					</ul>
