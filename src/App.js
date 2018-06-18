@@ -15,7 +15,7 @@ class App extends Component {
 			login: false,
 			databaseRecieved: false,
 			items: {},
-			admin: true
+			admin: false
 		}
 
 
@@ -57,7 +57,7 @@ class App extends Component {
 		});
 
 		fire.database().ref('songs').on('value', (snapshot) => {
-			if(snapshot.val() !== undefined){
+			if(snapshot.val() != undefined){
 				this.setState({
 					items: snapshot.val()
 				});

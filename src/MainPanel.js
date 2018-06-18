@@ -80,7 +80,7 @@ class MainPanel extends Component {
 		}
 		console.log(songLinkArray, songLink)
 		if (songLinkArray.indexOf(songLink) === -1) {
-			fire.database().ref('songs').push({ name: song, link: songLink, thumbnail: thumbnailLink });
+			fire.database().ref('songs').push({ name: song, link: songLink, thumbnail: thumbnailLink, user: this.props.userName});
 		} else {
 			alert("That song is already on the list. Please go vote for it if you would like it to play!");
 		}
