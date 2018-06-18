@@ -14,7 +14,8 @@ class App extends Component {
 		this.state = {
 			login: false,
 			databaseRecieved: false,
-			items: {}
+			items: {},
+			admin: true
 		}
 
 
@@ -22,17 +23,22 @@ class App extends Component {
 			if (user) {
 				// User is signed in.
 				this.displayName = user.displayName;
-				// var email = user.email;
+				this.email = user.email;
 				// var emailVerified = user.emailVerified;
 				// var photoURL = user.photoURL;
 				// var isAnonymous = user.isAnonymous;
 				this.uid = user.uid;
 				// var providerData = user.providerData;
-				var email = user.email.split('@')
+				var email = user.email.split('@');
 				if (email[email.length - 1] === "dtechhs.org") {
 					this.setState({
 						login: true
 					});
+					if (this.isNumeric(email[email.length - 2].charAt(email[email.length - 2].length - 1))) {
+						this.setState({
+							admin: true
+						})
+					}
 				} else {
 					alert("You are attempting to use a non-dtechhs email! Please sign in with your school email.");
 					firebase.auth().signOut().then(function () {
@@ -64,12 +70,16 @@ class App extends Component {
 		});
 	}
 
+	isNumeric = (num) => {
+		return !isNaN(parseFloat(num)) && isFinite(num);
+	}
+
 
 	render = () => {
 		return this.state.databaseRecieved ? (
 			<div>
 				<ButtonAppBar login={this.state.login} name={this.displayName} />
-				<MainPanel login={this.state.login} uid={this.uid} items={this.state.items} />
+				<MainPanel login={this.state.login} uid={this.uid} items={this.state.items} admin={this.state.admin} userName={this.email} />
 			</div>
 		) : <Loading />;
 	}
