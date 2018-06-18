@@ -25,7 +25,9 @@ var ButtonAppBar = (props) => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="title" color="inherit" className={classes.flex}>
+            <a href='app' style={{textDecoration:'none', color:'inherit'}}>
             D.J
+            </a>
           </Typography>
           {(props.name && props.login) ? <Typography color="inherit" className={classes.padding}>
           Hi {props.name}
